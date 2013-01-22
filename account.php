@@ -2,11 +2,13 @@
 require('lib/functions.php');
 
 session_start();
-if(!isLoggedIn()) {
-	header('location: login.php');
+if( isLoggedIn() == false ) {
+	header('location: lib/login.php');
 	die();
+} else if ( isLoggedIn() == true ) {
+	// Do something?
 }
 ?>
 <h1>Hello!</h1>
 
-<a href="login_form.php" onclick="logout();">Logout</a>
+<a href="lib/logout.php">Logout</a>

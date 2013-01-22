@@ -1,6 +1,8 @@
 <?php
 require('lib/functions.php');
+session_start();
 ?>
+
 <form name="login" action="lib/login.php" method="post">
 	<h2>Login</h2>
 	Username: <input type="text" name="username" />

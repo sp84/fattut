@@ -6,12 +6,15 @@ function validateUser() {
 }
 
 function isLoggedIn() {
-	if(isset($_SESSION['valid']) && $_SESSION['valid'])
+	if(isset($_SESSION['valid']) && $_SESSION['valid'] == 1) {
 		return true;
-	return false;
+	} else {
+		return false;
+	}
 }
 
 function logout() {
+	$_SESSION['valid'] = 0;
 	$_SESSION = array();
 	session_destroy();
 }
