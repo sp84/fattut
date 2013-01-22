@@ -7,7 +7,7 @@ $username = $_POST['username'];
 $password = $_POST['password'];
 
 $username = mysql_real_escape_string($username);
-$query = 	"SELECT password, salt
+$query = 	"SELECT password, salt, uid
 			FROM users
 			WHERE username = '$username';";
 $result = mysql_query($query);
@@ -21,14 +21,14 @@ if(mysql_num_rows($result) < 1) {
 //  Apply hash/salt/hash combination to password.
 $userData = mysql_fetch_array($result, MYSQL_ASSOC);
 $hash = hash('sha256', $userData['salt'] . hash('sha256', $password) );
-
+$uid = $userData['uid'];
 // Incorrect password.
 if ( $hash !== $userData['password'] ) { 
 	header('location: ../login_form.php?alert=invalid');
 	die();
 } else {
 	// 	Set session data for user
-	validateUser();  
+	validateUser($uid);  
 }
 
 //  Login successful, redirect now.

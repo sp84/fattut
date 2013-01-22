@@ -2,12 +2,13 @@
 require('lib/functions.php');
 require('lib/db.php');
 
+
 session_start();
 if( isLoggedIn() == false ) {
 	header('location: lib/login.php');
 	die();
 } else if ( isLoggedIn() == true ) {
-	// Do something?
+	$uid = $_SESSION['uid'];
 }
 ?>
 <div>

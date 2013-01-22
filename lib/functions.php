@@ -1,8 +1,9 @@
 <?php
 
-function validateUser() {
+function validateUser($arg) {
 	session_regenerate_id();
 	$_SESSION['valid'] = 1;
+	$_SESSION['uid'] = $arg;
 }
 
 function isLoggedIn() {
