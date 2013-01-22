@@ -1,17 +1,10 @@
 <?php 
 require('functions.php');
-
+require('db.php');
 session_start();
+
 $username = $_POST['username'];
 $password = $_POST['password'];
-
-//  Query database.
-$dbhost = 'localhost';
-$dbname = 'fattut';
-$dbuser = 'root';
-$dbpass = '';
-$conn = mysql_connect($dbhost, $dbuser, $dbpass);
-mysql_select_db($dbname, $conn);
 
 $username = mysql_real_escape_string($username);
 $query = 	"SELECT password, salt

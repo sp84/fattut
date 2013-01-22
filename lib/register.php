@@ -1,5 +1,6 @@
 <?php 
 require('functions.php');
+require('db.php');
 
 // Retrieve data from POST
 $username = $_POST['username'];
@@ -36,14 +37,6 @@ $salt = createSalt();
 //  Adds the salt to the hashed password &
 //	hash again for security.
 $hash = hash('sha256', $salt . $hash);
-
-//  Query database.
-$dbhost = 'localhost';
-$dbname = 'fattut';
-$dbuser = 'root';
-$dbpass = '';
-$conn = mysql_connect($dbhost, $dbuser, $dbpass);
-mysql_select_db($dbname, $conn);
 
 //  Sanitize username.
 $username = mysql_real_escape_string($username);
