@@ -13,7 +13,7 @@ session_start();
 <form name="register" action="lib/register.php" method="post">
 	<h2>Register</h2>
 	Username: <input type="text" name="username" maxlength="30" />
-	Password: <input type="password" name="pass1" />
-	Password Again: <input type="password" name="pass2" />
+	Password: <input type="password" name="register_password" />
+	Password Again: <input type="password" name="register_password_confirm" />
 	<input type="submit" value="Register" />
 </form>
