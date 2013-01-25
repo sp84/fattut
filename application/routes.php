@@ -37,6 +37,13 @@ Route::get('/', function()
 	return View::make('home.index');
 });
 
+/*  Map all requests to controllers by default -ms 1.24.13 */
+Route::controller(Controller::detect());
+
+/*  Direct all requests to /about to Home controller & About action. */
+Route::controller(Controller::detect());
+Route::get('about', 'home@about');
+
 /*
 |--------------------------------------------------------------------------
 | Application 404 & 500 Error Handlers
@@ -89,6 +96,8 @@ Event::listen('500', function()
 |		}));
 |
 */
+
+
 
 Route::filter('before', function()
 {
