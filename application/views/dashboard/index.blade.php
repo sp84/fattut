@@ -36,7 +36,7 @@
         </div>
     </div>
     <div class="span9">
-        <h1>Your articles</h1>
+        <h1>Welcome {{ Auth::user()->email }} Your articles</h1>
         @forelse ($articles as $article)
         <div class="well" style="text-align: center">
             <h2>{{ $article->location }}</h2>
