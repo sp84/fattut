@@ -1,8 +1,9 @@
 @layout('layouts/main')
 @section('navigation')
 @parent
-<li><a href="user/logout">Logout</a></li>
+<li><a href="/user/logout">Logout</a></li>
 @endsection
+</br></br>
 @section('content')
 <div class="row">
     <div class="span3">

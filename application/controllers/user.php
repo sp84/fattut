@@ -8,14 +8,13 @@ class User_Controller extends Base_Controller {
 		$new_user = Input::get('new_user', 'off');
 		if ( $new_user == 'on' ) {
 			try {
-
 				$user = new User();
 				$user->email = $email;
 				$user->password = Hash::make($password);
-				$user->save;
-				echo $user->email;
-				echo $user->password;
-
+				$user->save();
+				Auth::login($user);
+				return Redirect::to('dashboard/index');
+				
 			} catch ( Exception $e ) {
 				echo "Failed to create new user.";
 			}
@@ -25,6 +24,7 @@ class User_Controller extends Base_Controller {
 				'password' => $password
 			);
 			if ( Auth::attempt($credentials)) {
+				echo "Cred Again";
 				return Redirect::to('dashboard/index');
 			} else {
 				echo "Failed to Login!";
@@ -34,7 +34,7 @@ class User_Controller extends Base_Controller {
 	
 	public function action_logout() {
 		Auth::logout();
-		return Redirect::to('home');
+		return Redirect::to('/home');
 	}
 	
 }
