@@ -1,7 +1,7 @@
 @layout('layouts/main')
 @section('navigation')
 @parent
-<li><a href="/user/logout">Logout</a></li>
+<li><a href="<?php URL::to('user/logout'); ?>">Logout</a></li>
 @endsection
 </br></br>
 @section('content')
@@ -40,8 +40,8 @@
         <h1>Welcome {{ Auth::user()->email }} Your articles</h1>
         @forelse ($articles as $article)
         <div class="well" style="text-align: center">
-            <h2>{{ $article->location }}</h2>
-            <p>{{ $article->description }}</p>
+            <h2>{{ $article->title }}</h2>
+            <p>{{ $article->content }}</p>
         </div>
         @empty
         <div class="alert alert-info">

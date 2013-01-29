@@ -18,15 +18,26 @@
                             @yield_section
                         </ul>
                     </div><!--/.nav-collapse -->
+					@section('post_navigation')
+					@if (Auth::check())
+						@include('plugins.loggedin_postnav');
+					@endif
+					@yield_section
                 </div>
             </div>
         </div>
         <div class="container">
+			@include('plugins.status')
             @yield('content')
             <hr>
             <footer>
             <p>&copy; FatTuts 2020</p>
             </footer>
         </div> <!-- /container -->
+		@section('modals')
+		@if (Auth::check())
+			@include('plugins.post_modal')
+		@endif
+		@yield_section
     </body>
 </html>

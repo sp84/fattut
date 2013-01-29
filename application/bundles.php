@@ -36,5 +36,8 @@
 return array(
 
 	'docs' => array('handles' => 'docs'),
-
+	'gravatar' => array(
+		'auto' => true,
+		'handles' => 'gravatar'
+	)
 );

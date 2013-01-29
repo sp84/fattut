@@ -6,7 +6,19 @@ class User_Controller extends Base_Controller {
 		$email = Input::get('email');
 		$password = Input::get('password');
 		$new_user = Input::get('new_user', 'off');
+		$input = array (
+			'email' => $email,
+			'password' => $password
+		);
 		if ( $new_user == 'on' ) {
+			$rules = array(
+				'email' => 'required|email|unique:users',
+				'password' => 'required'
+			);
+			$validation = Validator::make($input, $rules);
+			if($validation->fails()){
+				return Redirect::to('home')->with_errors($validation);
+			}
 			try {
 				$user = new User();
 				$user->email = $email;
@@ -16,18 +28,27 @@ class User_Controller extends Base_Controller {
 				return Redirect::to('dashboard/index');
 				
 			} catch ( Exception $e ) {
-				echo "Failed to create new user.";
+				Session::flash('status_error', 'An error has occured while creating a new account.  Please try again later.');
+				return Redirect::to('home');
 			}
 		} else {
+			$rules = array(
+				'email' => 'required|email|exists:users',
+				'password' => 'required'
+			);
+			$validation = Validator::make($input, $rules);
+			if($validation->fails()){
+				return Redirect::to('home')->with_errors($validation);
+			}
 			$credentials = array(
 				'username' => $email,
 				'password' => $password
 			);
 			if ( Auth::attempt($credentials)) {
-				echo "Cred Again";
-				return Redirect::to('dashboard/index');
+				return Redirect::to('dashboard');
 			} else {
-				echo "Failed to Login!";
+				Session::flash('status_error', 'Your email or password is invalid.');
+				return Redirect::to('home');
 			}
 		}
 	}
