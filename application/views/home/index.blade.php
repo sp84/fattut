@@ -1,7 +1,7 @@
 @layout('layouts/main')
 @section('navigation')
 @parent
-<li><a href="/about">About</a></li>
+<li><?php echo HTML::link_to_action('home@about', 'About'); ?></li>
 @endsection
 @section('content')
 <div class="hero-unit">

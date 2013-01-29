@@ -1,9 +1,9 @@
 @layout('layouts/main')
 @section('navigation')
 @parent
-<li><a href="<?php URL::to('user/logout'); ?>">Logout</a></li>
+<li><?php echo HTML::link_to_action('user@logout', 'Logout'); ?></li>
 @endsection
-</br></br>
+
 @section('content')
 <div class="row">
     <div class="span3">
@@ -49,6 +49,22 @@
             <p>Seems like you don't have any articles yet. <a href="#">Upload a new one?</a></p>
         </div>
         @endforelse
+		
+		<h1>All Articles</h1>
+		@forelse ($articles_all as $article_all)
+		<div class="well" style="text-align: left">
+			<h2>{{ $article_all->title }}</h2>
+			<p>{{ $article_all->content }}</p>
+			<p>Published by: {{ $article_all->user_id }}</p>
+			<p>Created at: {{ $article_all->created_at }}</p>
+			<p>Last Modified: {{ $article_all->updated_at }}</p>
+		</div>
+		@empty
+        <div class="alert alert-info">
+            <h4 class="alert-heading">Awww!</h4>
+            <p>There are currently no articles in our database.  <a href="#">Upload a new one?</a></p>
+        </div>
+		@endforelse
     </div>
 </div>
 @endsection

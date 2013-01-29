@@ -4,7 +4,8 @@ class Dashboard_Controller extends Base_Controller {
 
 	public function action_index() {
 		$articles = Auth::user()->articles()->order_by('created_at', 'desc')->order_by('id', 'desc')->get();
-		return View::make('dashboard.index', array('articles' => $articles));
+		$articles_all = DB::table('articles')->get();
+		return View::make('dashboard.index', array('articles' => $articles, 'articles_all' => $articles_all ));
 	}
 	
 	public function action_insert_test_data()
