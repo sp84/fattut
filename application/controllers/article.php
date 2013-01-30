@@ -1,6 +1,13 @@
 <?php 
 
 class Article_Controller extends Base_Controller {
+
+	public function action_index($article) {
+		$article = Article::find($article);
+		return View::make('articles.full')
+			->with('article', $article);
+	}
+
 	public function action_post() {
 		$input = Input::all();
 		if ( isset ( $input['content'] ) ) {
@@ -23,3 +30,4 @@ class Article_Controller extends Base_Controller {
 		return Redirect::to('dashboard');
 	}
 }
+

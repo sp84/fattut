@@ -8,4 +8,5 @@ class Article extends Eloquent {
 	public function article_comments() {
 		return $this->has_many('Article_Comment');
 	}
+
 }

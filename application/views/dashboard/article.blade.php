@@ -40,9 +40,8 @@
         <h1>Welcome {{ Auth::user()->email }} Your articles</h1>
         @forelse ($articles as $article)
         <div class="well" style="text-align: center">
-            <h2>{{ HTML::link('article/' . $article->id, $article->title) }}</h2>
-            <p>{{ substr($article->content, 0, 120) . ' [..]' }}</p>
-			<p>{{ HTML::link('article/' . $article->id, 'Read more &rarr;') }}</p>
+            <h2>{{ $article->title }}</h2>
+            <p>{{ $article->content }}</p>
         </div>
         @empty
         <div class="alert alert-info">
@@ -50,7 +49,7 @@
             <p>Seems like you don't have any articles yet. <a href="#">Upload a new one?</a></p>
         </div>
         @endforelse
-
+		
 		<h1>All Articles</h1>
 		@forelse ($articles_all as $article_all)
 		<div class="well" style="text-align: left">

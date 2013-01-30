@@ -3,7 +3,6 @@
 @parent
 <li><?php echo HTML::link_to_action('user@logout', 'Logout'); ?></li>
 @endsection
-
 @section('content')
 <div class="row">
     <div class="span3">
@@ -37,35 +36,10 @@
         </div>
     </div>
     <div class="span9">
-        <h1>Welcome {{ Auth::user()->email }} Your articles</h1>
-        @forelse ($articles as $article)
-        <div class="well" style="text-align: center">
-            <h2>{{ HTML::link('article/' . $article->id, $article->title) }}</h2>
-            <p>{{ substr($article->content, 0, 120) . ' [..]' }}</p>
-			<p>{{ HTML::link('article/' . $article->id, 'Read more &rarr;') }}</p>
-        </div>
-        @empty
-        <div class="alert alert-info">
-            <h4 class="alert-heading">Awww!</h4>
-            <p>Seems like you don't have any articles yet. <a href="#">Upload a new one?</a></p>
-        </div>
-        @endforelse
-
-		<h1>All Articles</h1>
-		@forelse ($articles_all as $article_all)
-		<div class="well" style="text-align: left">
-			<h2>{{ $article_all->title }}</h2>
-			<p>{{ $article_all->content }}</p>
-			<p>Published by: {{ $article_all->email }}</p>
-			<p>Created at: {{ $article_all->created_at }}</p>
-			<p>Last Modified: {{ $article_all->updated_at }}</p>
-		</div>
-		@empty
-        <div class="alert alert-info">
-            <h4 class="alert-heading">Awww!</h4>
-            <p>There are currently no articles in our database.  <a href="#">Upload a new one?</a></p>
-        </div>
-		@endforelse
+	
+        <h1>{{ HTML::link('article/' . $article->id, $article->title) }}</h1>
+		<p>{{ $article->content }}</p>
+		<p>{{ HTML::link('articles/' . $article->id, $article->title) }}</p>
     </div>
 </div>
 @endsection
