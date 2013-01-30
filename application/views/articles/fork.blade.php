@@ -36,27 +36,20 @@
         </div>
     </div>
     <div class="span9">
-	
-        <h1>{{ HTML::link('article/' . $article->id, $article->title) }}</h1>
-		<h6>Written by {{ $article->id }} on {{ $article->created_at }}.  Last modified on {{ $article->updated_at }}.</h6>
-		<p>{{ $article->content }}</p>
-		<p>{{ HTML::link('article/fork/' . $article->id, 'Fork This Article') }}</p>
-		<hr>
-		<h2>Comments</h2>
-		<hr>
-		<h2>Forks</h2>
-        @forelse ($forks as $fork)
-        <div class="well" style="text-align: center">
-            <h2>{{ HTML::link('article/' . $fork->id, $fork->title) }}</h2>
-            <p>{{ substr($fork->content, 0, 120) . ' [..]' }}</p>
-			<p>{{ HTML::link('article/' . $fork->id, 'Read more &rarr;') }}</p>
-        </div>
-        @empty
-        <div class="alert alert-info">
-            <h4 class="alert-heading">Awww!</h4>
-            <p>Seems like this article has not been forked yet.  Interested? {{ HTML::link('article/fork/' . $article->id, 'Fork it!') }}</p>
-        </div>
-        @endforelse
+
+		<div class="form" id="article_fork">
+			<h1>{{ $article->title }}</h1>
+			<h3>Fork This Article</h3>
+			<form method="POST" action="{{ URL::to('article/forkpost', array($article)) }}" id="article_fork_form" enctype="multipart/form-data">
+				<label for="title">title</label>
+				<input type="text" placeholder="Article Title" name="title" id="title" />
+				<label for="content">Content</label>
+				<textarea placeholder="Content goes here" name="content" id="content" class="span5"></textarea>
+				<input type="hidden" name="article" value="{{ $article->id }}" />
+			</form>
+			<a href="{{Request::referrer()}}" class="btn" data-dismiss="modal">Cancel</a>
+			<button type="button" onclick="$('#article_fork_form').submit();" class="btn btn-primary">submit</a>
+		</div>
     </div>
 </div>
 @endsection

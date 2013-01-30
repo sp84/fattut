@@ -38,7 +38,7 @@ Route::get('/', function()
 });
 
 Route::get('article/(:num)', 'article@index');
-
+Route::get('article/fork/(:num)', 'article@fork');
 /*  Map all requests to controllers by default -ms 1.24.13 */
 Route::controller(Controller::detect());
 

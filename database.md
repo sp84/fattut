@@ -46,6 +46,7 @@ ENGINE = InnoDB
 CHARACTER SET utf8 COLLATE utf8_general_ci;
 CREATE TABLE `fattuts`.`articles` (
   `id` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  `parent_id` INTEGER UNSIGNED,
   `user_id` INTEGER UNSIGNED NOT NULL,
   `title` TEXT NOT NULL,
   `content` TEXT NOT NULL,
