@@ -14,7 +14,7 @@
             <div style="margin-left: 10px">
                 @forelse (Auth::user()->followers as $follower)
                     <div style="float: left; width: 30px; margin: 0px 3px 3px 5px;">
-                        <img src="http://d2o0t5hpnwv4c1.cloudfront.net/2069_laravel_2/http://gravatar.com/avatar/{{ md5(strtolower(trim($follower->email))) }}?s=25&d=retro" alt="Follower" title="{{ $follower->email }}" />
+                        <img src="http://gravatar.com/avatar/{{ md5(strtolower(trim($follower->email))) }}?s=25&d=retro" alt="Follower" title="{{ $follower->email }}" />
                     </div>
                 @empty
                     <div>You have no followers.</div>
@@ -27,7 +27,7 @@
             <div style="margin-left: 10px">
                 @forelse (Auth::user()->following as $following)
                     <div style="float: left; width: 30px; margin: 0px 3px 3px 5px;">
-                        <img src="img/profile_default.png" alt="Following" title="{{ $following->email }}" />
+                        <img src="http://gravatar.com/avatar/{{ md5(strtolower(trim($following->email))) }}?s=25&d=retro" alt="Following" title="{{ $following->email }}" />
                     </div>
                 @empty
                     <div>You are not following anybody.</div>
