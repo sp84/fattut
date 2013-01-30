@@ -40,7 +40,7 @@
 		<div class="form" id="article_fork">
 			<h1>{{ $article->title }}</h1>
 			<h3>Fork This Article</h3>
-			<form method="POST" action="{{ URL::to('article/forkpost', array($article)) }}" id="article_fork_form" enctype="multipart/form-data">
+			<form method="POST" action="{{ URL::to('article/forkpost') }}" id="article_fork_form" enctype="multipart/form-data">
 				<label for="title">title</label>
 				<input type="text" placeholder="Article Title" name="title" id="title" />
 				<label for="content">Content</label>
