@@ -55,7 +55,7 @@
 		<div class="well" style="text-align: left">
 			<h2>{{ $article_all->title }}</h2>
 			<p>{{ $article_all->content }}</p>
-			<p>Published by: {{ $article_all->user_id }}</p>
+			<p>Published by: {{ $article_all->email }}</p>
 			<p>Created at: {{ $article_all->created_at }}</p>
 			<p>Last Modified: {{ $article_all->updated_at }}</p>
 		</div>
