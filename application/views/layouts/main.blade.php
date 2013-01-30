@@ -10,7 +10,7 @@
         <div class="navbar navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container">
-                    <a class="brand" href="home">FatTuts</a>
+                    <a href="<?php echo URL::to_action('home@index'); ?>" class="brand">FatTuts</a>
                     <div class="nav-collapse">
                         <ul class="nav">
                             @section('navigation')
@@ -20,7 +20,7 @@
                     </div><!--/.nav-collapse -->
 					@section('post_navigation')
 					@if (Auth::check())
-						@include('plugins.loggedin_postnav');
+						@include('plugins.loggedin_postnav')
 					@endif
 					@yield_section
                 </div> <!--/.container -->

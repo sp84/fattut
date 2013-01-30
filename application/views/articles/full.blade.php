@@ -38,8 +38,11 @@
     <div class="span9">
 	
         <h1>{{ HTML::link('article/' . $article->id, $article->title) }}</h1>
+		<h6>Written by {{ $article->id }} on {{ $article->created_at }}.  Last modified on {{ $article->updated_at }}.</h6>
 		<p>{{ $article->content }}</p>
-		<p>{{ HTML::link('articles/' . $article->id, $article->title) }}</p>
+		<p>{{ HTML::link('articles/' . $article->id, 'Return to Index') }}</p>
+		<hr>
+		<h2>Comments</h2>
     </div>
 </div>
 @endsection
