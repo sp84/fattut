@@ -7,11 +7,16 @@ class Article_Controller extends Base_Controller {
 		$article = Article::find($article);
 		$forks = DB::table('articles')->where('parent_id', '=', $article->id)->get();
 		$comments = DB::table('article_comments')->where('article_id', '=', $article->id)->get();
+		$ratings = DB::table('ratings')
+					->where('article_id', '=', $article->id)
+					->where('rating', '>', 0)
+					->count();
 		return View::make('articles.full')
 			->with(array(
 				'article' => $article,
 				'forks' => $forks,
-				'comments' => $comments
+				'comments' => $comments,
+				'ratings' => $ratings
 			));
 	}
 
@@ -28,7 +33,7 @@ class Article_Controller extends Base_Controller {
 		if ( $validation->fails() ) {
 			return Redirect::to('dashboard')->with_errors($validation);
 		}
-		if ( $input['article'] ) {
+		if ( isset($input['article']) ) {
 			$article = new Article(array(
 				'title' => $input['title'],
 				'content' => $input['content'],
@@ -66,6 +71,7 @@ class Article_Controller extends Base_Controller {
 		if ( $validation->fails() ) {
 			return Redirect::to('dashboard')->with_errors($validation);
 		}
+
 		$comment = new Article_Comment(array(
 			'message' => $input['comment'],
 			'article_id' => $input['article']
@@ -81,8 +87,16 @@ class Article_Controller extends Base_Controller {
 			'rating' => 1,
 			'article_id' => $input['article']
 		));
-		Auth::user()->rating()->insert($rating);
-		return Redirect::back();
+		$query = DB::table('ratings')
+			->where('article_id', '=', $input['article'])
+			->where('user_id', '=', Auth::user()->id)
+			->get();
+		if ($query) {
+			return Redirect::back();
+		} else {
+			Auth::user()->rating()->insert($rating);
+			return Redirect::back();
+		}
 	}
 	public function action_ratedown(){
 		$input = Input::all();
@@ -90,8 +104,16 @@ class Article_Controller extends Base_Controller {
 			'rating' => 0,
 			'article_id' => $input['article']
 		));
-		Auth::user()->rating()->insert($rating);
-		return Redirect::back();
+		$query = DB::table('ratings')
+			->where('article_id', '=', $input['article'])
+			->where('user_id', '=', Auth::user()->id)
+			->get();
+		if ($query) {
+			return Redirect::back();
+		} else {
+			Auth::user()->rating()->insert($rating);
+			return Redirect::back();
+		}
 	}
 	
 }

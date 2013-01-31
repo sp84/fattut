@@ -43,15 +43,20 @@
 		<p>{{ HTML::link('article/fork/' . $article->id, 'Fork This Article') }}</p>
 		
 		<div class="well well-small">
-			<h4>Rate this article.</h4>
-			<form method="POST" action="{{ URL::to('article/rateup') }}" id="article_rateup_form" enctype="multipart/form-data">
-				<input type="hidden" name="article" value="{{ $article->id }}" />
-			</form>
-			<button type="button" onclick="$('#article_rateup_form').submit();" class="btn btn-primary" style="float:left;margin-right:20px;">Thumbs Up</button>
-			<form method="POST" action="{{ URL::to('article/ratedown') }}" id="article_ratedown_form" enctype="multipart/form-data">
-				<input type="hidden" name="article" value="{{ $article->id }}" />
-			</form>
-			<button type="button" onclick="$('#article_ratedown_form').submit();" class="btn btn-primary">Thumbs Down</button>
+			<div style="float:left; height:80px; width:80px; font-size: 64px; margin-right:40px;">
+				<p style="line-height:80px;">+{{ $ratings }}</p>
+			</div>	
+			<div>
+				<h4>Rate this article.</h4>
+				<form method="POST" action="{{ URL::to('article/rateup') }}" id="article_rateup_form" enctype="multipart/form-data">
+					<input type="hidden" name="article" value="{{ $article->id }}" />
+				</form>
+				<button type="button" onclick="$('#article_rateup_form').submit();" class="btn btn-primary" style="float:left;margin-right:20px;">Thumbs Up</button>
+				<form method="POST" action="{{ URL::to('article/ratedown') }}" id="article_ratedown_form" enctype="multipart/form-data">
+					<input type="hidden" name="article" value="{{ $article->id }}" />
+				</form>
+				<button type="button" onclick="$('#article_ratedown_form').submit();" class="btn btn-primary">Thumbs Down</button>
+			</div>
 		</div>
 		
 		<hr>
