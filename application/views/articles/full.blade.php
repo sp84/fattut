@@ -42,8 +42,6 @@
 		<p>{{ $article->content }}</p>
 		<p>{{ HTML::link('article/fork/' . $article->id, 'Fork This Article') }}</p>
 		<hr>
-		<h2>Comments</h2>
-		<hr>
 		<h2>Forks</h2>
         @forelse ($forks as $fork)
         <div class="well" style="text-align: center">
@@ -53,10 +51,32 @@
         </div>
         @empty
         <div class="alert alert-info">
-            <h4 class="alert-heading">Awww!</h4>
+            <h4 class="alert-heading">Dang!</h4>
             <p>Seems like this article has not been forked yet.  Interested? {{ HTML::link('article/fork/' . $article->id, 'Fork it!') }}</p>
         </div>
         @endforelse
+		<hr>
+		<h2>Comments</h2>
+        @forelse ($comments as $comment)
+        <div class="well" style="text-align: center">
+            <p>{{ $comment->message }}</p>
+        </div>
+        @empty
+        <div class="alert alert-info">
+            <h4 class="alert-heading">Doh!</h4>
+            <p>Seems like this article has no comments.  Want to be the first?  Comment below!</p>
+        </div>
+        @endforelse
+
+		<div class="form" id="article_comment">
+			<h3>Leave a comment</h3>
+			<form method="POST" action="{{ URL::to('article/comment') }}" id="article_comment_form" enctype="multipart/form-data">
+				<label for="comment">Comment</label>
+				<textarea placeholder="Comment goes here" name="comment" id="comment" class="span5"></textarea>
+				<input type="hidden" name="article" value="{{ $article->id }}" />
+			</form>
+			<button type="button" onclick="$('#article_comment_form').submit();" class="btn btn-primary">Submit</a>
+		</div>
     </div>
 </div>
 @endsection
