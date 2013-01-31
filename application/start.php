@@ -60,7 +60,8 @@ Laravel\Autoloader::$aliases = $aliases;
 
 Autoloader::map(array(
 	'Base_Controller' => path('app').'controllers/base.php',
-	'Article_Comment' => path('app').'models/article_comment.php'
+	'Article_Comment' => path('app').'models/article_comment.php',
+	'Rating' => path('app').'models/rating.php'
 ));
 
 /*

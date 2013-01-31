@@ -37,10 +37,23 @@
     </div>
     <div class="span9">
 	
-        <h1>{{ HTML::link('article/' . $article->id, $article->title) }}</h1>
-		<h6>Written by {{ $article->id }} on {{ $article->created_at }}.  Last modified on {{ $article->updated_at }}.</h6>
+        <h3>{{ HTML::link('article/' . $article->id, $article->title) }}</h3>
+		<small>Written by {{ $article->id }} on {{ $article->created_at }}.  Last modified on {{ $article->updated_at }}.</small>
 		<p>{{ $article->content }}</p>
 		<p>{{ HTML::link('article/fork/' . $article->id, 'Fork This Article') }}</p>
+		
+		<div class="well well-small">
+			<h4>Rate this article.</h4>
+			<form method="POST" action="{{ URL::to('article/rateup') }}" id="article_rateup_form" enctype="multipart/form-data">
+				<input type="hidden" name="article" value="{{ $article->id }}" />
+			</form>
+			<button type="button" onclick="$('#article_rateup_form').submit();" class="btn btn-primary" style="float:left;margin-right:20px;">Thumbs Up</button>
+			<form method="POST" action="{{ URL::to('article/ratedown') }}" id="article_ratedown_form" enctype="multipart/form-data">
+				<input type="hidden" name="article" value="{{ $article->id }}" />
+			</form>
+			<button type="button" onclick="$('#article_ratedown_form').submit();" class="btn btn-primary">Thumbs Down</button>
+		</div>
+		
 		<hr>
 		<h2>Forks</h2>
         @forelse ($forks as $fork)
@@ -58,7 +71,7 @@
 		<hr>
 		<h2>Comments</h2>
         @forelse ($comments as $comment)
-        <div class="well" style="text-align: center">
+        <div class="well well-small">
             <p>{{ $comment->message }}</p>
         </div>
         @empty
@@ -75,7 +88,7 @@
 				<textarea placeholder="Comment goes here" name="comment" id="comment" class="span5"></textarea>
 				<input type="hidden" name="article" value="{{ $article->id }}" />
 			</form>
-			<button type="button" onclick="$('#article_comment_form').submit();" class="btn btn-primary">Submit</a>
+			<button type="button" onclick="$('#article_comment_form').submit();" class="btn btn-primary">Submit</button>
 		</div>
     </div>
 </div>

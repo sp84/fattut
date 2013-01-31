@@ -74,5 +74,25 @@ class Article_Controller extends Base_Controller {
 		Session::flash('status_success', 'Successfully commented');
 		return Redirect::to('dashboard');
 	}
+	
+	public function action_rateup(){
+		$input = Input::all();
+		$rating = new Rating(array(
+			'rating' => 1,
+			'article_id' => $input['article']
+		));
+		Auth::user()->rating()->insert($rating);
+		return Redirect::back();
+	}
+	public function action_ratedown(){
+		$input = Input::all();
+		$rating = new Rating(array(
+			'rating' => 0,
+			'article_id' => $input['article']
+		));
+		Auth::user()->rating()->insert($rating);
+		return Redirect::back();
+	}
+	
 }
 

@@ -20,4 +20,7 @@ class User extends Eloquent {
 	public function article_comment() {
 		return $this->has_many('Article_Comment');
 	}
+	public function rating() {
+		return $this->has_many('Rating');
+	}
 }

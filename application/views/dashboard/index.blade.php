@@ -37,12 +37,14 @@
         </div>
     </div>
     <div class="span9">
-        <h1>Welcome {{ Auth::user()->email }} Your articles</h1>
+	
+        <h1>Welcome {{ Auth::user()->email }}</h1>
+		
+		<h2>Your articles</h1>
         @forelse ($articles as $article)
-        <div class="well" style="text-align: center">
-            <h2>{{ HTML::link('article/' . $article->id, $article->title) }}</h2>
+        <div class="well well-small">
+            <h5>{{ HTML::link('article/' . $article->id, $article->title) }}</h5>
             <p>{{ substr($article->content, 0, 120) . ' [..]' }}</p>
-			<p>{{ HTML::link('article/' . $article->id, 'Read more &rarr;') }}</p>
         </div>
         @empty
         <div class="alert alert-info">
@@ -51,14 +53,12 @@
         </div>
         @endforelse
 
-		<h1>All Articles</h1>
+		<h2>All Articles</h2>
 		@forelse ($articles_all as $article_all)
-		<div class="well" style="text-align: left">
-			<h2>{{ $article_all->title }}</h2>
+		<div class="well well-small">
+			<h5>{{ $article_all->title }}</h5>
+			<small>By {{ $article_all->email }} on {{ $article_all->created_at }}.  Last modified on {{ $article_all->updated_at }}.</small>
 			<p>{{ $article_all->content }}</p>
-			<p>Published by: {{ $article_all->email }}</p>
-			<p>Created at: {{ $article_all->created_at }}</p>
-			<p>Last Modified: {{ $article_all->updated_at }}</p>
 		</div>
 		@empty
         <div class="alert alert-info">
@@ -66,6 +66,7 @@
             <p>There are currently no articles in our database.  <a href="#">Upload a new one?</a></p>
         </div>
 		@endforelse
+		
     </div>
 </div>
 @endsection

@@ -79,3 +79,15 @@ CREATE TABLE `fattuts`.`article_comments` (
 )
 ENGINE = InnoDB
 CHARACTER SET utf8 COLLATE utf8_general_ci;
+
+CREATE TABLE `fattuts`.`ratings` (
+  `id` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  `article_id` VARCHAR(100) NOT NULL,
+  `user_id` VARCHAR(100) NOT NULL,
+  `rating` TINYINT(1) NOT NULL,
+  `created_at` DATETIME NOT NULL,
+  `updated_at` DATETIME NOT NULL,
+  PRIMARY KEY (`id`)
+)
+ENGINE = InnoDB
+CHARACTER SET utf8 COLLATE utf8_general_ci;
