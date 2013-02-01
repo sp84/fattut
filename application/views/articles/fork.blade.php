@@ -1,6 +1,7 @@
 @layout('layouts/main')
 @section('navigation')
 @parent
+<li><?php echo HTML::link_to_action('article@new', 'Post an Article'); ?></li>
 <li><?php echo HTML::link_to_action('user@logout', 'Logout'); ?></li>
 @endsection
 @section('content')

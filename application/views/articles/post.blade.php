@@ -4,7 +4,6 @@
 <li><?php echo HTML::link_to_action('article@new', 'Post an Article'); ?></li>
 <li><?php echo HTML::link_to_action('user@logout', 'Logout'); ?></li>
 @endsection
-
 @section('content')
 <div class="row">
     <div class="span3">
@@ -38,36 +37,18 @@
         </div>
     </div>
     <div class="span9">
-	
-        <h1>Welcome {{ Auth::user()->email }}</h1>
-		
-		<h2>Your articles</h1>
-        @forelse ($articles as $article)
-        <div class="well well-small">
-            <h5>{{ HTML::link('article/' . $article->id, $article->title) }}</h5>
-            <p>{{ substr($article->content, 0, 120) . ' [..]' }}</p>
-        </div>
-        @empty
-        <div class="alert alert-info">
-            <h4 class="alert-heading">Awww!</h4>
-            <p>Seems like you don't have any articles yet. <a href="#">Upload a new one?</a></p>
-        </div>
-        @endforelse
 
-		<h2>All Articles</h2>
-		@forelse ($articles_all as $article_all)
-		<div class="well well-small">
-			<h5>{{ $article_all->title }}</h5>
-			<small>By {{ $article_all->email }} on {{ $article_all->created_at }}.  Last modified on {{ $article_all->updated_at }}.</small>
-			<p>{{ $article_all->content }}</p>
+		<div class="form" id="article_fork">
+			<h3>Post an article.</h3>
+			<form method="POST" action="{{ URL::to('article/post') }}" id="article_fork_form" enctype="multipart/form-data">
+				<label for="title">title</label>
+				<input type="text" placeholder="Article Title" name="title" id="title" />
+				<label for="content">Content</label>
+				<textarea placeholder="Content goes here" name="content" id="content" class="span5"></textarea>
+			</form>
+			<a href="{{Request::referrer()}}" class="btn" data-dismiss="modal">Cancel</a>
+			<button type="button" onclick="$('#article_fork_form').submit();" class="btn btn-primary">submit</a>
 		</div>
-		@empty
-        <div class="alert alert-info">
-            <h4 class="alert-heading">Awww!</h4>
-            <p>There are currently no articles in our database.  <a href="#">Upload a new one?</a></p>
-        </div>
-		@endforelse
-		
     </div>
 </div>
 @endsection

@@ -33,13 +33,13 @@ class Article_Controller extends Base_Controller {
 		if ( $validation->fails() ) {
 			return Redirect::to('dashboard')->with_errors($validation);
 		}
-		if ( isset($input['article']) ) {
+		if ( isset($input['article']) ) { 	// Posting Fork Articles
 			$article = new Article(array(
 				'title' => $input['title'],
 				'content' => $input['content'],
 				'parent_id' => $input['article']
 			));
-		} else {
+		} else {							// Posting Origin Articles
 			$article = new Article(array(
 				'title' => $input['title'],
 				'content' => $input['content']		
@@ -50,10 +50,11 @@ class Article_Controller extends Base_Controller {
 		return Redirect::to('dashboard');
 	}
 	
-
+	public function action_new(){
+		return View::make('articles.post');
+	}
 	
-	public function action_fork($article){
-		$article = Article::find($article);
+	public function action_fork(){
 		return View::make('articles.fork')
 			->with('article', $article);
 	}
@@ -67,6 +68,7 @@ class Article_Controller extends Base_Controller {
 			'comment' => 'required',
 			'article' => 'required'
 		);
+
 		$validation = Validator::make($input,$rules);
 		if ( $validation->fails() ) {
 			return Redirect::to('dashboard')->with_errors($validation);
@@ -76,6 +78,7 @@ class Article_Controller extends Base_Controller {
 			'message' => $input['comment'],
 			'article_id' => $input['article']
 		));
+		
 		Auth::user()->article_comment()->insert($comment);
 		Session::flash('status_success', 'Successfully commented');
 		return Redirect::to('dashboard');
@@ -115,6 +118,7 @@ class Article_Controller extends Base_Controller {
 			return Redirect::back();
 		}
 	}
+	
 	
 }
 

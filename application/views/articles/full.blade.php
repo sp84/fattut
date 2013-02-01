@@ -1,9 +1,11 @@
 @layout('layouts/main')
 @section('navigation')
 @parent
+<li><?php echo HTML::link_to_action('article@new', 'Post an Article'); ?></li>
 <li><?php echo HTML::link_to_action('user@logout', 'Logout'); ?></li>
 @endsection
 @section('content')
+
 <div class="row">
     <div class="span3">
         <div class="well sidebar-nav">
@@ -60,6 +62,7 @@
 		</div>
 		
 		<hr>
+		
 		<h2>Forks</h2>
         @forelse ($forks as $fork)
         <div class="well" style="text-align: center">
@@ -73,7 +76,9 @@
             <p>Seems like this article has not been forked yet.  Interested? {{ HTML::link('article/fork/' . $article->id, 'Fork it!') }}</p>
         </div>
         @endforelse
+		
 		<hr>
+		
 		<h2>Comments</h2>
         @forelse ($comments as $comment)
         <div class="well well-small">
@@ -95,6 +100,7 @@
 			</form>
 			<button type="button" onclick="$('#article_comment_form').submit();" class="btn btn-primary">Submit</button>
 		</div>
+		
     </div>
 </div>
 @endsection
