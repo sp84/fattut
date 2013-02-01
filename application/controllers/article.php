@@ -54,7 +54,8 @@ class Article_Controller extends Base_Controller {
 		return View::make('articles.post');
 	}
 	
-	public function action_fork(){
+	public function action_fork($article){
+		$article = Article::find($article);
 		return View::make('articles.fork')
 			->with('article', $article);
 	}
@@ -117,8 +118,5 @@ class Article_Controller extends Base_Controller {
 			Auth::user()->rating()->insert($rating);
 			return Redirect::back();
 		}
-	}
-	
-	
+	}	
 }
-

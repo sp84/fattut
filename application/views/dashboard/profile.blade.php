@@ -38,19 +38,19 @@
         </div>
     </div>
     <div class="span9">
-
-		<div class="form" id="article_fork">
-			<h1>{{ $article->title }}</h1>
-			<h3>Fork This Article</h3>
+		<h3>User Profile</h3>
+		<div class="well">
+			<h4>Change Your Password</h4>
 			<form method="POST" action="{{ URL::to('article/post') }}" id="article_fork_form" enctype="multipart/form-data">
-				<label for="title">title</label>
-				<input type="text" placeholder="Article Title" name="title" id="title" />
-				<label for="content">Content</label>
-				<textarea placeholder="Content goes here" name="content" id="content" class="span5"></textarea>
-				<input type="hidden" name="article" value="{{ $article->id }}" />
+				<label for="current_password">Current Password</label>
+				<input type="password" placeholder="" name="current_password" id="current_password" />
+				<hr />
+				<label for="new_password">New Password</label>
+				<input type="password" placeholder="" name="new_password" id="new_password" />
+				<label for="new_password2">Again</label>
+				<input type="password" placeholder="" name="new_password2" id="new_password2" />
 			</form>
-			<a href="{{Request::referrer()}}" class="btn" data-dismiss="modal">Cancel</a>
-			<button type="button" onclick="$('#article_fork_form').submit();" class="btn btn-primary">submit</a>
+			<button type="button" onclick="$('#article_fork_form').submit();" class="btn btn-primary">Submit</a>
 		</div>
     </div>
 </div>

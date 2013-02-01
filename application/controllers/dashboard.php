@@ -7,6 +7,10 @@ class Dashboard_Controller extends Base_Controller {
 		$articles_all = DB::table('articles')->join('users', 'articles.user_id', '=', 'users.id')->get();
 		return View::make('dashboard.index', array('articles' => $articles, 'articles_all' => $articles_all ));
 	}
+
+	public function action_profile(){
+		return View::make('dashboard.profile');
+	}
 	
 	public function action_insert_test_data()
 	{
@@ -41,5 +45,6 @@ class Dashboard_Controller extends Base_Controller {
 		);
 		$logged_in_user->photos()->save($photos);
 	}
+
 
 }
