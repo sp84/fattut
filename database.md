@@ -1,31 +1,8 @@
-#CREATE DATABASE `test`;
-USE `test`;
-CREATE TABLE `test`.`users` (
-  `id` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
-  `email` VARCHAR(100) NOT NULL,
-  `password` VARCHAR(100) NOT NULL,
-  `created_at` DATETIME NOT NULL,
-  `updated_at` DATETIME NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `Index_email`(`email`)
-)
+#CREATE DATABASE `fattuts`;
+USE `fattuts`;
 ENGINE = InnoDB
 CHARACTER SET utf8 COLLATE utf8_general_ci;
-CREATE TABLE `test`.`user_profiles` (
-  `id` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
-  `user_id` INTEGER UNSIGNED NOT NULL,
-  `name` TEXT NOT NULL,
-  `profile_article` TEXT NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `Index_user_id`(`user_id`),
-  CONSTRAINT `FK_user_profiles_user_id` FOREIGN KEY `FK_user_profiles_user_id` (`user_id`)
-    REFERENCES `users` (`id`)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE
-)
-ENGINE = InnoDB
-CHARACTER SET utf8 COLLATE utf8_general_ci;
-CREATE TABLE `test`.`relationships` (
+CREATE TABLE `fattuts`.`relationships` (
   `id` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
   `follower_id` INTEGER UNSIGNED NOT NULL,
   `followed_id` INTEGER UNSIGNED NOT NULL,
@@ -44,7 +21,7 @@ CREATE TABLE `test`.`relationships` (
 )
 ENGINE = InnoDB
 CHARACTER SET utf8 COLLATE utf8_general_ci;
-CREATE TABLE `test`.`articles` (
+CREATE TABLE `fattuts`.`articles` (
   `id` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
   `parent_id` INTEGER UNSIGNED,
   `user_id` INTEGER UNSIGNED NOT NULL,
@@ -60,7 +37,7 @@ CREATE TABLE `test`.`articles` (
 )
 ENGINE = InnoDB
 CHARACTER SET utf8 COLLATE utf8_general_ci;
-CREATE TABLE `test`.`article_comments` (
+CREATE TABLE `fattuts`.`article_comments` (
   `id` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
   `user_id` INTEGER UNSIGNED NOT NULL,
   `article_id` INTEGER UNSIGNED NOT NULL,
@@ -80,7 +57,7 @@ CREATE TABLE `test`.`article_comments` (
 ENGINE = InnoDB
 CHARACTER SET utf8 COLLATE utf8_general_ci;
 
-CREATE TABLE `test`.`ratings` (
+CREATE TABLE `fattuts`.`ratings` (
   `id` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
   `article_id` VARCHAR(100) NOT NULL,
   `user_id` VARCHAR(100) NOT NULL,
