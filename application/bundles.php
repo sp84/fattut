@@ -39,5 +39,6 @@ return array(
 	'gravatar' => array(
 		'auto' => true,
 		'handles' => 'gravatar'
-	)
+	),
+	'sentry' => array('auto' => true),
 );

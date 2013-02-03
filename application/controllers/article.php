@@ -51,7 +51,10 @@ class Article_Controller extends Base_Controller {
 	}
 	
 	public function action_new(){
-		return View::make('articles.post');
+                $followers = DB::table('relationships')->join('users','relationships.followed_id', '=', 'users.id')->get();
+                $following = DB::table('relationships')->join('users','relationships.follower_id', '=', 'users.id')->get();
+                $articles = DB::table('articles')->join('users', 'articles.user_id', '=', 'users.id')->get();
+                return View::make('articles.post', array('articles' => $articles, 'followers' => $followers, 'following' => $following, ));
 	}
 	
 	public function action_fork($article){

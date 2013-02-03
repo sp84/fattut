@@ -13,7 +13,7 @@
                 <li class="nav-header">Followers</li>
             </ul>
             <div style="margin-left: 10px">
-                @forelse (Auth::user()->followers as $follower)
+                @forelse ($followers as $follower)
                     <div style="float: left; width: 30px; margin: 0px 3px 3px 5px;">
                         <img src="http://gravatar.com/avatar/{{ md5(strtolower(trim($follower->email))) }}?s=25&d=retro" alt="Follower" title="{{ $follower->email }}" />
                     </div>
@@ -26,7 +26,7 @@
                 <li class="nav-header">Following</li>
             </ul>
             <div style="margin-left: 10px">
-                @forelse (Auth::user()->following as $following)
+                @forelse ($following as $following)
                     <div style="float: left; width: 30px; margin: 0px 3px 3px 5px;">
                         <img src="http://gravatar.com/avatar/{{ md5(strtolower(trim($following->email))) }}?s=25&d=retro" alt="Following" title="{{ $following->email }}" />
                     </div>

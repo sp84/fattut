@@ -1,6 +1,6 @@
-CREATE DATABASE `fattuts`;
-USE `fattuts`;
-CREATE TABLE `fattuts`.`users` (
+#CREATE DATABASE `test`;
+USE `test`;
+CREATE TABLE `test`.`users` (
   `id` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
   `email` VARCHAR(100) NOT NULL,
   `password` VARCHAR(100) NOT NULL,
@@ -11,7 +11,7 @@ CREATE TABLE `fattuts`.`users` (
 )
 ENGINE = InnoDB
 CHARACTER SET utf8 COLLATE utf8_general_ci;
-CREATE TABLE `fattuts`.`user_profiles` (
+CREATE TABLE `test`.`user_profiles` (
   `id` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
   `user_id` INTEGER UNSIGNED NOT NULL,
   `name` TEXT NOT NULL,
@@ -25,7 +25,7 @@ CREATE TABLE `fattuts`.`user_profiles` (
 )
 ENGINE = InnoDB
 CHARACTER SET utf8 COLLATE utf8_general_ci;
-CREATE TABLE `fattuts`.`relationships` (
+CREATE TABLE `test`.`relationships` (
   `id` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
   `follower_id` INTEGER UNSIGNED NOT NULL,
   `followed_id` INTEGER UNSIGNED NOT NULL,
@@ -44,7 +44,7 @@ CREATE TABLE `fattuts`.`relationships` (
 )
 ENGINE = InnoDB
 CHARACTER SET utf8 COLLATE utf8_general_ci;
-CREATE TABLE `fattuts`.`articles` (
+CREATE TABLE `test`.`articles` (
   `id` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
   `parent_id` INTEGER UNSIGNED,
   `user_id` INTEGER UNSIGNED NOT NULL,
@@ -60,7 +60,7 @@ CREATE TABLE `fattuts`.`articles` (
 )
 ENGINE = InnoDB
 CHARACTER SET utf8 COLLATE utf8_general_ci;
-CREATE TABLE `fattuts`.`article_comments` (
+CREATE TABLE `test`.`article_comments` (
   `id` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
   `user_id` INTEGER UNSIGNED NOT NULL,
   `article_id` INTEGER UNSIGNED NOT NULL,
@@ -80,7 +80,7 @@ CREATE TABLE `fattuts`.`article_comments` (
 ENGINE = InnoDB
 CHARACTER SET utf8 COLLATE utf8_general_ci;
 
-CREATE TABLE `fattuts`.`ratings` (
+CREATE TABLE `test`.`ratings` (
   `id` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
   `article_id` VARCHAR(100) NOT NULL,
   `user_id` VARCHAR(100) NOT NULL,

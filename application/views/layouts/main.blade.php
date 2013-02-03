@@ -33,7 +33,7 @@
             @yield('content')
             <hr>
             <footer>
-				<p>&copy; FatTuts 2020</p>
+		<p>&copy; FatTuts 2020</p>
             </footer>
         </div> <!-- /container -->
 		@section('modals')
